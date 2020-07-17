@@ -1,0 +1,24 @@
+.login-wrapper {
+    height: 100vh;
+    background-color: green;
+}
+
+.login-container {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    width: 80%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.flex-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex-wrapper .content {
+    width: 40%;
+}
