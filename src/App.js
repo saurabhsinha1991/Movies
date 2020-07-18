@@ -1,22 +1,27 @@
 import React from 'react';
-import Login from './pages/Login';
-import SignUp from './pages/SignUp';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
+import PrivateRoute from './hoc/PrivateRoute';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
+import { AuthProvider } from './Auth';
 
 function App() {
   return (
       <div className="App">
-          <Router>
-              <Switch>
-                  <Route path="/login" component={Login} />
-                  <Route path="/signup" component={SignUp} />
-              </Switch>
-          </Router>
+        <AuthProvider>
+            <Router>
+                <Switch>
+                    <Route path="/login" component={Login} />
+                    <Route path="/signup" component={SignUp} />
+                    <PrivateRoute path="/" component={Home} />
+                </Switch>
+            </Router>
+        </AuthProvider>
       </div>
   );
 }

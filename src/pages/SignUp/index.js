@@ -1,7 +1,23 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { withRouter } from 'react-router';
 import SignUpForm from '../../components/SignUpForm';
+import base from '../../base';
 
-function SignUp() {
+function SignUp({ history }) {
+    const _onSignUp = useCallback(async ({ email, password }) => {
+            try {
+                await base.auth().createUserWithEmailAndPassword(
+                    email,
+                    password
+                ).then(() => {
+                    history.push('/');
+                });
+                debugger;
+            } catch(err) {
+                console.log(err);
+            }
+    }, [history]);
+
     return (
         <div className="login-wrapper">
             <div className="login-container">
@@ -10,8 +26,8 @@ function SignUp() {
                         Hi
                     </div>
                     <div className="content">
-                        <h2>Member Login</h2>
-                        <SignUpForm />
+                        <h2>Sign Up</h2>
+                        <SignUpForm onSignUp={_onSignUp} />
                     </div>
                 </div>
             </div>
@@ -19,4 +35,4 @@ function SignUp() {
     );
 }
 
-export default SignUp;
+export default withRouter(SignUp);

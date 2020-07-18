@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 
-function LoginForm() {
+function LoginForm({ onLogin }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -21,6 +21,7 @@ function LoginForm() {
             />
             <br />
             <button
+                onClick={() => onLogin({ email, password })}
                 disabled={!(email.length > 0 && password.length > 0)}
             >Login</button>
         </div>
